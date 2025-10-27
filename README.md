@@ -35,7 +35,7 @@ Aplikasi Manajemen Data Pekerja adalah sistem CRUD (Create, Read, Update, Delete
 ![Dashboard Preview](readme\img\image.png)
 
 ### Data Pekerja
-![Data Pekerja Preview](https://via.placeholder.com/800x400/3C8DBC/FFFFFF?text=Data+Pekerja+Preview)
+![Data Pekerja Preview](readme\img\image.png)
 
 ## 🛠️ Tech Stack
 
