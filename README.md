@@ -1,61 +1,229 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 👥 Aplikasi Manajemen Data Pekerja
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12.35.1-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.4.13-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![AdminLTE](https://img.shields.io/badge/AdminLTE-3.2-3C8DBC?style=for-the-badge&logo=admin&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Sistem manajemen data pekerja modern dengan antarmuka AdminLTE yang elegan dan responsif**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[Demo](#-preview) • [Fitur](#-fitur) • [Instalasi](#-instalasi) • [Dokumentasi](#-dokumentasi)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 Deskripsi
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Aplikasi Manajemen Data Pekerja adalah sistem CRUD (Create, Read, Update, Delete) berbasis web yang dibangun menggunakan Laravel 12 dan AdminLTE 3. Aplikasi ini memudahkan pengelolaan informasi pekerja dengan antarmuka yang intuitif dan modern.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Fitur
 
-## Laravel Sponsors
+- 📝 **CRUD Lengkap** - Tambah, lihat, edit, dan hapus data pekerja
+- 🎨 **AdminLTE Template** - Antarmuka admin yang modern dan responsif
+- 📱 **Responsive Design** - Tampil sempurna di semua perangkat
+- 🔍 **Pagination** - Navigasi data yang mudah
+- 🎯 **User-Friendly** - Interface yang intuitif dan mudah digunakan
+- ⚡ **Fast Performance** - Performa cepat dengan Laravel framework
+- 🔐 **Secure** - Built-in security features dari Laravel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🖼️ Preview
 
-### Premium Partners
+### Dashboard
+![Dashboard Preview](https://via.placeholder.com/800x400/3C8DBC/FFFFFF?text=Dashboard+Preview)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Data Pekerja
+![Data Pekerja Preview](https://via.placeholder.com/800x400/3C8DBC/FFFFFF?text=Data+Pekerja+Preview)
 
-## Contributing
+## 🛠️ Tech Stack
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Technology | Version | Description |
+|-----------|---------|-------------|
+| Laravel | 12.35.1 | PHP Framework |
+| PHP | 8.4.13 | Programming Language |
+| AdminLTE | 3.2 | Admin Template |
+| Bootstrap | 4.6 | CSS Framework |
+| Font Awesome | 6.4.0 | Icon Library |
+| MySQL | 8.0+ | Database |
 
-## Code of Conduct
+## 📦 Instalasi
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Prasyarat
 
-## Security Vulnerabilities
+Pastikan sistem Anda sudah terinstal:
+- PHP >= 8.4
+- Composer
+- MySQL >= 8.0
+- Node.js & NPM (opsional)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Langkah Instalasi
 
-## License
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/Dialius/admin-laravel.git
+   cd admin-laravel
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. **Install Dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Copy Environment File**
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Konfigurasi Database**
+   
+   Edit file `.env` dan sesuaikan dengan konfigurasi database Anda:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=nama_database
+   DB_USERNAME=username_database
+   DB_PASSWORD=password_database
+   ```
+
+6. **Jalankan Migration**
+   ```bash
+   php artisan migrate
+   ```
+
+7. **Seed Database (Opsional)**
+   ```bash
+   php artisan db:seed
+   ```
+
+8. **Jalankan Server Development**
+   ```bash
+   php artisan serve
+   ```
+
+9. **Akses Aplikasi**
+   
+   Buka browser dan akses: `http://127.0.0.1:8000`
+
+## 🗂️ Struktur Project
+
+```
+admin-laravel/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── PekerjaController.php
+│   └── Models/
+│       └── Pekerja.php
+├── database/
+│   └── migrations/
+│       └── create_pekerja_table.php
+├── resources/
+│   └── views/
+│       ├── layouts/
+│       │   └── app.blade.php
+│       └── pekerja/
+│           ├── index.blade.php
+│           ├── create.blade.php
+│           ├── edit.blade.php
+│           └── show.blade.php
+├── routes/
+│   └── web.php
+└── public/
+```
+
+## 📚 Dokumentasi
+
+### Model Pekerja
+
+```php
+// Struktur tabel pekerja
+Schema::create('pekerja', function (Blueprint $table) {
+    $table->id();
+    $table->string('nama');
+    $table->string('email')->unique();
+    $table->string('skill');
+    $table->timestamps();
+});
+```
+
+### Routes
+
+| Method | URI | Action | Route Name |
+|--------|-----|--------|------------|
+| GET | /pekerja | index | pekerja.index |
+| GET | /pekerja/create | create | pekerja.create |
+| POST | /pekerja | store | pekerja.store |
+| GET | /pekerja/{id} | show | pekerja.show |
+| GET | /pekerja/{id}/edit | edit | pekerja.edit |
+| PUT/PATCH | /pekerja/{id} | update | pekerja.update |
+| DELETE | /pekerja/{id} | destroy | pekerja.destroy |
+
+## 🚀 Penggunaan
+
+### Menambah Data Pekerja
+
+1. Klik tombol **"Tambah Pekerja"**
+2. Isi form dengan data pekerja
+3. Klik **"Simpan"**
+
+### Mengedit Data Pekerja
+
+1. Klik tombol **"Edit"** pada baris data yang ingin diubah
+2. Update informasi yang diperlukan
+3. Klik **"Update"**
+
+### Menghapus Data Pekerja
+
+1. Klik tombol **"Hapus"** pada baris data yang ingin dihapus
+2. Konfirmasi penghapusan
+3. Data akan terhapus permanent
+
+## 🤝 Kontribusi
+
+Kontribusi selalu diterima! Jika Anda ingin berkontribusi:
+
+1. Fork repository ini
+2. Buat branch fitur baru (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan Anda (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 🐛 Bug Reports & Feature Requests
+
+Jika Anda menemukan bug atau ingin request fitur baru, silakan buat [issue baru](https://github.com/Dialius/admin-laravel/issues).
+
+## 📝 License
+
+Project ini dilisensikan di bawah [MIT License](LICENSE).
+
+## 👨‍💻 Author
+
+**Dialius**
+
+- GitHub: [@Dialius](https://github.com/Dialius)
+- Repository: [admin-laravel](https://github.com/Dialius/admin-laravel)
+
+## 🙏 Acknowledgments
+
+- [Laravel](https://laravel.com) - Framework PHP terbaik
+- [AdminLTE](https://adminlte.io) - Template admin yang elegan
+- [Bootstrap](https://getbootstrap.com) - CSS framework
+- [Font Awesome](https://fontawesome.com) - Icon library
+
+---
+
+<div align="center">
+
+**⭐ Jangan lupa beri star jika project ini membantu Anda! ⭐**
+
+Made with ❤️ by [Dialius](https://github.com/Dialius)
+
+</div>
