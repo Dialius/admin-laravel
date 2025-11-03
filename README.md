@@ -25,6 +25,7 @@ Aplikasi Manajemen Data Pekerja adalah sistem CRUD (Create, Read, Update, Delete
 - 🎨 **AdminLTE Template** - Antarmuka admin yang modern dan responsif
 - 📱 **Responsive Design** - Tampil sempurna di semua perangkat
 - 🔍 **Pagination** - Navigasi data yang mudah
+- 🔔 **Noty Notifications** - Notifikasi real-time yang elegan untuk setiap aksi CRUD
 - 🎯 **User-Friendly** - Interface yang intuitif dan mudah digunakan
 - ⚡ **Fast Performance** - Performa cepat dengan Laravel framework
 - 🔐 **Secure** - Built-in security features dari Laravel
@@ -46,6 +47,7 @@ Aplikasi Manajemen Data Pekerja adalah sistem CRUD (Create, Read, Update, Delete
 | AdminLTE | 3.2 | Admin Template |
 | Bootstrap | 4.6 | CSS Framework |
 | Font Awesome | 6.4.0 | Icon Library |
+| Noty | 3.1.4 | Notification Library |
 | MySQL | 8.0+ | Database |
 
 ## 📦 Instalasi
@@ -166,6 +168,53 @@ Schema::create('pekerja', function (Blueprint $table) {
 | PUT/PATCH | /pekerja/{id} | update | pekerja.update |
 | DELETE | /pekerja/{id} | destroy | pekerja.destroy |
 
+### 🔔 Noty Notification System
+
+Aplikasi ini menggunakan **Noty.js** untuk menampilkan notifikasi yang elegan dan user-friendly pada setiap aksi CRUD.
+
+#### Tipe Notifikasi
+
+| Tipe | Trigger | Pesan | Warna |
+|------|---------|-------|-------|
+| ✅ Success | Data berhasil ditambahkan | "Data pekerja berhasil ditambahkan!" | Hijau |
+| ✅ Success | Data berhasil diupdate | "Data pekerja berhasil diperbarui!" | Hijau |
+| ✅ Success | Data berhasil dihapus | "Data pekerja berhasil dihapus!" | Hijau |
+| ⚠️ Error | Terjadi kesalahan | "Terjadi kesalahan saat memproses data!" | Merah |
+| ℹ️ Info | Informasi umum | Pesan informasi khusus | Biru |
+
+#### Contoh Implementasi
+
+```javascript
+// Notifikasi Success
+new Noty({
+    type: 'success',
+    layout: 'topRight',
+    text: 'Data berhasil disimpan!',
+    timeout: 3000,
+    theme: 'mint',
+    progressBar: true
+}).show();
+
+// Notifikasi Error
+new Noty({
+    type: 'error',
+    layout: 'topRight',
+    text: 'Terjadi kesalahan!',
+    timeout: 3000,
+    theme: 'mint',
+    progressBar: true
+}).show();
+```
+
+#### Fitur Noty
+
+- 🎨 Multiple themes (mint, sunset, relax)
+- 📍 Flexible positioning (topRight, topCenter, bottom, dll)
+- ⏱️ Auto-dismiss dengan progress bar
+- 🎭 Animation effects (fadeIn/fadeOut)
+- 📱 Responsive dan mobile-friendly
+- ⚡ Lightweight dan fast loading
+
 ## 🚀 Penggunaan
 
 ### Menambah Data Pekerja
@@ -173,18 +222,21 @@ Schema::create('pekerja', function (Blueprint $table) {
 1. Klik tombol **"Tambah Pekerja"**
 2. Isi form dengan data pekerja
 3. Klik **"Simpan"**
+4. Notifikasi sukses akan muncul di pojok kanan atas
 
 ### Mengedit Data Pekerja
 
 1. Klik tombol **"Edit"** pada baris data yang ingin diubah
 2. Update informasi yang diperlukan
 3. Klik **"Update"**
+4. Notifikasi sukses akan muncul setelah data berhasil diperbarui
 
 ### Menghapus Data Pekerja
 
 1. Klik tombol **"Hapus"** pada baris data yang ingin dihapus
 2. Konfirmasi penghapusan
 3. Data akan terhapus permanent
+4. Notifikasi sukses akan muncul setelah data terhapus
 
 ## 🤝 Kontribusi
 
@@ -217,6 +269,7 @@ Project ini dilisensikan di bawah [MIT License](LICENSE).
 - [AdminLTE](https://adminlte.io) - Template admin yang elegan
 - [Bootstrap](https://getbootstrap.com) - CSS framework
 - [Font Awesome](https://fontawesome.com) - Icon library
+- [Noty](https://ned.im/noty) - Beautiful notification library
 
 ---
 
