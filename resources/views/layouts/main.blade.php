@@ -151,6 +151,9 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
+<!-- PHP Flasher Noty -->
+@flasher_render
+
 @stack('scripts')
 </body>
 </html>

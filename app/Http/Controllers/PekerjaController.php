@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pekerja; // Import model
+use App\Models\Pekerja;
 use Illuminate\Http\Request;
-
 
 class PekerjaController extends Controller
 {
@@ -31,19 +30,33 @@ class PekerjaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'nama' => 'required|string|max:255',
-        'umur' => 'required|integer|min:17|max:65',
-        'jenis_kelamin' => 'required|in:L,P',
-        'alamat' => 'required|string',
-        'nomor_hp' => 'required|string|unique:pekerja,nomor_hp',
-        'email' => 'required|email|unique:pekerja,email',
-        'skill' => 'required|string',
-    ]);
+            'nama' => 'required|string|max:255',
+            'umur' => 'required|integer|min:17|max:65',
+            'jenis_kelamin' => 'required|in:L,P',
+            'alamat' => 'required|string',
+            'nomor_hp' => 'required|string|unique:pekerja,nomor_hp',
+            'email' => 'required|email|unique:pekerja,email',
+            'skill' => 'required|string',
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'umur.required' => 'Umur wajib diisi',
+            'umur.min' => 'Umur minimal 17 tahun',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih',
+            'alamat.required' => 'Alamat wajib diisi',
+            'nomor_hp.required' => 'Nomor HP wajib diisi',
+            'nomor_hp.unique' => 'Nomor HP sudah terdaftar',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'skill.required' => 'Skill wajib diisi',
+        ]);
 
-    Pekerja::create($request->all());
+        Pekerja::create($request->all());
 
-    return redirect()->route('pekerja.index')->with('success', 'Pekerja baru berhasil ditambahkan!');
+        // Notifikasi Success dengan Noty
+        flash()->success('Data pekerja berhasil ditambahkan!');
 
+        return redirect()->route('pekerja.index');
     }
 
     /**
@@ -62,7 +75,6 @@ class PekerjaController extends Controller
         return view('pekerja.edit', compact('pekerja'));
     }
 
-
     /**
      * Update the specified resource in storage.
      */
@@ -73,25 +85,42 @@ class PekerjaController extends Controller
             'umur' => 'required|integer|min:17|max:65',
             'jenis_kelamin' => 'required|in:L,P',
             'alamat' => 'required|string',
-            // Validasi unik, tapi abaikan ID pekerja saat ini
             'nomor_hp' => 'required|string|unique:pekerja,nomor_hp,' . $pekerja->id,
             'email' => 'required|email|unique:pekerja,email,' . $pekerja->id,
             'skill' => 'required|string',
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'umur.required' => 'Umur wajib diisi',
+            'umur.min' => 'Umur minimal 17 tahun',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih',
+            'alamat.required' => 'Alamat wajib diisi',
+            'nomor_hp.required' => 'Nomor HP wajib diisi',
+            'nomor_hp.unique' => 'Nomor HP sudah terdaftar',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'skill.required' => 'Skill wajib diisi',
         ]);
 
         $pekerja->update($request->all());
 
-        return redirect()->route('pekerja.index')->with('success', 'Data pekerja berhasil diperbarui!');
-    }
+        // Notifikasi Info dengan Noty
+        flash()->info('Data pekerja berhasil diperbarui!');
 
+        return redirect()->route('pekerja.index');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Pekerja $pekerja)
     {
+        $nama_pekerja = $pekerja->nama;
         $pekerja->delete();
-        return redirect()->route('pekerja.index')->with('success', 'Data pekerja berhasil dihapus!');
-    }
 
+        // Notifikasi Warning dengan Noty
+        flash()->warning("Data pekerja {$nama_pekerja} berhasil dihapus!");
+
+        return redirect()->route('pekerja.index');
+    }
 }
