@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pekerja;
 use Illuminate\Http\Request;
+use ImgBB;
+use Illuminate\Support\Facades\Http;
 
 class PekerjaController extends Controller
 {

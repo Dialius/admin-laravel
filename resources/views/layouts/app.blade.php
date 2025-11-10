@@ -51,10 +51,20 @@
             <!-- Sidebar user panel -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="https://i.ibb.co.com/fzNtgGfF/White-angel2.jpg" class="img-circle elevation-2" alt="User Image">
+                    <!-- ✅ TAMBAHAN: Ganti dengan foto profil dinamis -->
+                    @if(auth()->check() && auth()->user()->profile_image)
+                        <img src="{{ auth()->user()->profile_image }}" class="img-circle elevation-2" alt="User Image">
+                    @else
+                        <img src="https://i.ibb.co.com/fzNtgGfF/White-angel2.jpg" class="img-circle elevation-2" alt="User Image">
+                    @endif
+                    <!-- ✅ AKHIR TAMBAHAN -->
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Administrator</a>
+                    <!-- ✅ TAMBAHAN: Tambahkan link ke profil admin -->
+                    <a href="{{ route('admin.profile') }}" class="d-block">
+                        {{ auth()->check() ? auth()->user()->name : 'Administrator' }}
+                    </a>
+                    <!-- ✅ AKHIR TAMBAHAN -->
                 </div>
             </div>
 
@@ -76,6 +86,15 @@
                             <p>Data Pekerja</p>
                         </a>
                     </li>
+
+                    <!-- ✅ TAMBAHAN: Menu Profil Admin -->
+                    <li class="nav-item">
+                        <a href="{{ route('admin.profile') }}" class="nav-link {{ Request::is('admin/profile*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user-circle"></i>
+                            <p>Profil Saya</p>
+                        </a>
+                    </li>
+                    <!-- ✅ AKHIR TAMBAHAN -->
 
                     <!-- Tambah menu lain di sini -->
                 </ul>
