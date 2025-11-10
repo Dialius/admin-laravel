@@ -123,4 +123,29 @@ class PekerjaController extends Controller
 
         return redirect()->route('pekerja.index');
     }
+
+    public function uploadProfile(Request $request, $id)
+    {
+        $request->validate([
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        try {
+            // Upload ke ImgBB
+            $response = ImgBB::image($request->file('profile_image'));
+            
+            // Ambil URL gambar
+            $imageUrl = $response['data']['url'];
+            
+            // Update pekerja
+            Pekerja::where('id', $id)->update([
+                'profile_image' => $imageUrl
+            ]);
+            
+            return redirect()->back()->with('success', 'Foto profil berhasil diupload!');
+            
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Upload gagal: ' . $e->getMessage());
+        }
+    }
 }

@@ -51,7 +51,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="https://cdn.discordapp.com/attachments/1333890180704108554/1376042134842511421/White_angel2.jpg?ex=6909759a&is=6908241a&hm=be71316a5234842342c5070189d06b14452e28922dd8025fac3fd64336088ab7&" class="img-circle elevation-2" alt="User Image">
+                    <img src="https://i.ibb.co.com/fzNtgGfF/White-angel2.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">Administrator</a>

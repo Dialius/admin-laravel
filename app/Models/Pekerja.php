@@ -15,6 +15,7 @@ class Pekerja extends Model
         'alamat',
         'nomor_hp',
         'email',
-        'skill'
+        'skill',
+        'profile_image'
     ];
 }
