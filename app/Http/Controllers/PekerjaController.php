@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pekerja;
 use Illuminate\Http\Request;
-use ImgBB;
-use Illuminate\Support\Facades\Http;
+use App\Models\Pekerja;
+use Illuminate\Support\Facades\Http;  // ← PENTING: Import ini untuk upload ke ImgBB
 
 class PekerjaController extends Controller
 {
@@ -14,7 +13,7 @@ class PekerjaController extends Controller
      */
     public function index()
     {
-        $daftar_pekerja = Pekerja::latest()->paginate(10);
+        $daftar_pekerja = Pekerja::paginate(10);
         return view('pekerja.index', compact('daftar_pekerja'));
     }
 
@@ -31,101 +30,75 @@ class PekerjaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'umur' => 'required|integer|min:17|max:65',
+            'email' => 'required|email|unique:pekerja,email',
+            'skill' => 'required|string|max:255',
+            'umur' => 'required|integer|min:17',
             'jenis_kelamin' => 'required|in:L,P',
             'alamat' => 'required|string',
-            'nomor_hp' => 'required|string|unique:pekerja,nomor_hp',
-            'email' => 'required|email|unique:pekerja,email',
-            'skill' => 'required|string',
-        ], [
-            'nama.required' => 'Nama wajib diisi',
-            'umur.required' => 'Umur wajib diisi',
-            'umur.min' => 'Umur minimal 17 tahun',
-            'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih',
-            'alamat.required' => 'Alamat wajib diisi',
-            'nomor_hp.required' => 'Nomor HP wajib diisi',
-            'nomor_hp.unique' => 'Nomor HP sudah terdaftar',
-            'email.required' => 'Email wajib diisi',
-            'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah terdaftar',
-            'skill.required' => 'Skill wajib diisi',
+            'nomor_hp' => 'required|string|max:15',
         ]);
 
-        Pekerja::create($request->all());
+        Pekerja::create($validated);
 
-        // Notifikasi Success dengan Noty
-        flash()->success('Data pekerja berhasil ditambahkan!');
-
-        return redirect()->route('pekerja.index');
+        return redirect()->route('pekerja.index')->with('success', 'Data pekerja berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pekerja $pekerja)
+    public function show(string $id)
     {
+        $pekerja = Pekerja::findOrFail($id);
         return view('pekerja.show', compact('pekerja'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pekerja $pekerja)
+    public function edit(string $id)
     {
+        $pekerja = Pekerja::findOrFail($id);
         return view('pekerja.edit', compact('pekerja'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pekerja $pekerja)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
+        $pekerja = Pekerja::findOrFail($id);
+
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'umur' => 'required|integer|min:17|max:65',
+            'email' => 'required|email|unique:pekerja,email,' . $id,
+            'skill' => 'required|string|max:255',
+            'umur' => 'required|integer|min:17',
             'jenis_kelamin' => 'required|in:L,P',
             'alamat' => 'required|string',
-            'nomor_hp' => 'required|string|unique:pekerja,nomor_hp,' . $pekerja->id,
-            'email' => 'required|email|unique:pekerja,email,' . $pekerja->id,
-            'skill' => 'required|string',
-        ], [
-            'nama.required' => 'Nama wajib diisi',
-            'umur.required' => 'Umur wajib diisi',
-            'umur.min' => 'Umur minimal 17 tahun',
-            'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih',
-            'alamat.required' => 'Alamat wajib diisi',
-            'nomor_hp.required' => 'Nomor HP wajib diisi',
-            'nomor_hp.unique' => 'Nomor HP sudah terdaftar',
-            'email.required' => 'Email wajib diisi',
-            'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah terdaftar',
-            'skill.required' => 'Skill wajib diisi',
+            'nomor_hp' => 'required|string|max:15',
         ]);
 
-        $pekerja->update($request->all());
+        $pekerja->update($validated);
 
-        // Notifikasi Info dengan Noty
-        flash()->info('Data pekerja berhasil diperbarui!');
-
-        return redirect()->route('pekerja.index');
+        return redirect()->route('pekerja.index')->with('success', 'Data pekerja berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pekerja $pekerja)
+    public function destroy(string $id)
     {
-        $nama_pekerja = $pekerja->nama;
+        $pekerja = Pekerja::findOrFail($id);
         $pekerja->delete();
 
-        // Notifikasi Warning dengan Noty
-        flash()->warning("Data pekerja {$nama_pekerja} berhasil dihapus!");
-
-        return redirect()->route('pekerja.index');
+        return redirect()->route('pekerja.index')->with('success', 'Data pekerja berhasil dihapus!');
     }
 
+    /**
+     * Upload profile image to ImgBB
+     */
     public function uploadProfile(Request $request, $id)
     {
         $request->validate([
@@ -133,18 +106,38 @@ class PekerjaController extends Controller
         ]);
 
         try {
-            // Upload ke ImgBB
-            $response = ImgBB::image($request->file('profile_image'));
+            // Ambil API key dari .env
+            $apiKey = env('IMGBB_API_KEY');
             
-            // Ambil URL gambar
-            $imageUrl = $response['data']['url'];
+            if (!$apiKey) {
+                return redirect()->back()->with('error', 'API Key ImgBB belum diset di file .env');
+            }
             
-            // Update pekerja
-            Pekerja::where('id', $id)->update([
-                'profile_image' => $imageUrl
+            // Ambil file gambar
+            $image = $request->file('profile_image');
+            
+            // Convert image ke base64
+            $imageData = base64_encode(file_get_contents($image->getRealPath()));
+            
+            // Upload ke ImgBB via HTTP
+            $response = Http::asForm()->post('https://api.imgbb.com/1/upload', [
+                'key' => $apiKey,
+                'image' => $imageData,
             ]);
             
-            return redirect()->back()->with('success', 'Foto profil berhasil diupload!');
+            // Cek jika berhasil
+            if ($response->successful()) {
+                $imageUrl = $response->json()['data']['url'];
+                
+                // Update pekerja
+                Pekerja::where('id', $id)->update([
+                    'profile_image' => $imageUrl
+                ]);
+                
+                return redirect()->back()->with('success', 'Foto profil berhasil diupload!');
+            } else {
+                return redirect()->back()->with('error', 'Upload gagal ke ImgBB: ' . $response->body());
+            }
             
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Upload gagal: ' . $e->getMessage());
